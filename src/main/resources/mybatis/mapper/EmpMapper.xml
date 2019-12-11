@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springtest.front.demo.dao.mapper.EmpMapper">    
+	<resultMap id="BaseResultMap" type="com.springtest.front.demo.model.EMP">        
+		<result column="ID" property="id" jdbcType="VARCHAR"/>        
+		<result column="NAME" property="name" jdbcType="VARCHAR"/>        
+		<result column="SEX" property="sex" jdbcType="CHAR"/>    
+		<result column="CREATE_DATE" property="createDate" jdbcType="DATE"/>
+		<result column="DEPT_CD" property="deptCd" jdbcType="VARCHAR"/> 
+		<result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR"/>     
+	</resultMap> 
+
+	<select id="getEmp" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        	ID, NAME, SEX, CREATE_DATE
+        FROM EMP        
+        WHERE ID = #{id}    
+	</select>
+	
+	<select id="getEmpDetail" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        	ID, NAME, SEX, CREATE_DATE, DEPT_NAME
+        FROM EMP e
+        INNER JOIN DEPT d ON e.DEPT_CD = d.DEPT_CD         
+        WHERE ID = #{id}    
+	</select>
+	
+	<insert id="addEmp" parameterType="com.springtest.front.demo.model.EMP">
+        insert into EMP ( ID, NAME, SEX, CREATE_DATE ) values ( #{id}, #{name}, #{sex}, GetDate() )
+    </insert>
+
+    <delete id="deleteEmp" parameterType="java.lang.String">
+        delete from EMP where ID = #{id}
+    </delete>
+	
+	<select id="findEmpByNameAndSex" parameterType="com.springtest.front.demo.model.EMP" resultMap="BaseResultMap">
+        select ID, NAME, SEX, CREATE_DATE from EMP where 1=1
+        <if test="name != null and name != ''">
+            and NAME like '%${name}%'
+        </if>
+        <if test="sex != null and sex !=''">
+            and SEX = #{sex}
+        </if>
+    </select>
+	
+</mapper>
