@@ -1,7 +1,6 @@
 package com.springtest.front.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.springtest.front.demo.model.EMP;
@@ -21,11 +20,12 @@ public class ServiceTest extends SpringBootTest2ApplicationTests {
 		Assert.assertEquals(1, empService.addEmp(emp));
 	}
 
-	@Test(expected= DataIntegrityViolationException.class) 
+	@Test
+	@Transactional
 	//@Ignore("not ready yet")
 	public void testAddEmp_Case2() throws Exception{
-		EMP emp = new EMP("a2221111111111111AAAAAAAAAAAAAAAAAAAAAAADDDDDDDDDDDDDDDDDDDDDDDDD","TEST","1",null,null);
-		empService.addEmp(emp);
+		EMP emp = new EMP("a2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA221111111111111AAAAAAAAAAAAAAAAAAAAAAADDDDDDDDDDDDDDDDDDDDDDDDD","TEST","1",null,null);
+		Assert.assertEquals(1,empService.addEmp(emp));
 	}
 
 }

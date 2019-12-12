@@ -26,7 +26,7 @@
 	</select>
 	
 	<insert id="addEmp" parameterType="com.springtest.front.demo.model.EMP">
-        insert into EMP ( ID, NAME, SEX, CREATE_DATE ) values ( #{id}, #{name}, #{sex}, GetDate() )
+        insert into EMP ( ID, NAME, SEX, CREATE_DATE ) values ( #{id}, #{name}, #{sex}, datetime('now'))
     </insert>
 
     <delete id="deleteEmp" parameterType="java.lang.String">

@@ -7,7 +7,6 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.springtest.front.demo.dao.EmpDao;
@@ -41,14 +40,14 @@ public class DaoTest extends SpringBootTest2ApplicationTests {
 		Assert.assertEquals(1, count);
 	}
 	
-	@Test(expected= DataIntegrityViolationException.class) 
+	@Test
 	@Transactional
 	public void testSave_Case2() throws Exception {
 		Map<String,Object> parameter = new HashMap<>();
-		parameter.put("id","a001aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		parameter.put("name","a001_name");
-		parameter.put("sex","1");
+		parameter.put("id","a001aaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		parameter.put("name","a001AAAA_name");
+		parameter.put("sex","A111");
 		long count = empDao.save("com.springtest.front.demo.dao.mapper.EmpMapper.addEmp",parameter);
-		Assert.assertNotEquals(1, count);
+		Assert.assertEquals(1, count);
 	}
 }

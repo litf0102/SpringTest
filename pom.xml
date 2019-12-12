@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.springtest</groupId>
-	<artifactId>SpringBootTest2</artifactId>
+	<artifactId>SpringTest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>SpringBootTest2</name>
+	<packaging>jar</packaging>
+	<name>SpringTest</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -68,7 +68,10 @@
             <artifactId>jquery</artifactId>
             <version>3.3.1-1</version>
         </dependency>
-		
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
