@@ -11,6 +11,10 @@ public class EMP {
     private String deptCd;
     private String deptName;
 
+    public EMP() {
+    	
+    }
+    
     public EMP(String id, String name, String sex) {
         this.id = id;
         this.name = name;
