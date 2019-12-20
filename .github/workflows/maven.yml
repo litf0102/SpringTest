@@ -19,8 +19,8 @@ jobs:
       run: |
         git config --global user.name "GitHub Actions"
         git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
-        git add target/
+        git add target/*.jar
         git commit -m "Update target" || echo "No changes to commit"
-        git push origin HEAD:Branch_SQLite
+        git push origin HEAD:master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
