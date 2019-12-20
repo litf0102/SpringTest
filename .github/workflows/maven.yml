@@ -15,3 +15,12 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Commit
+      run: |
+        git config --global user.name "GitHub Actions"
+        git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
+        git add target/
+        git commit -m "Update target" || echo "No changes to commit"
+        git push origin HEAD:master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
